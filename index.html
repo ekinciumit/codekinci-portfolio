@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÜMİT EKİNCİ // PORTFOLIO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="terminal-loader">
+            <div class="text">System Initializing...</div>
+        </div>
+    </div>
+    <div id="cursor-blur"></div>
+    <div id="glitch-overlay"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="glass-header">
+        <div class="logo">DEV<span class="dot">.</span>ÜMİT</div>
+        <nav>
+            <ul>
+                <li><a href="#hero" class="active">Profile</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <span class="subtitle">HELLO, I AM</span>
+                <h1>ÜMİT <br> <span class="gradient-text glitch" data-text="EKİNCİ">EKİNCİ</span></h1>
+                <h2 class="role" id="typewriter"></h2><span class="cursor">|</span>
+                <p>Focusing on scalable systems with ASP.NET Core, React, and Kotlin.
+                    Building clean, maintainable architecture for the future of web and mobile.</p>
+
+                <div class="contact-links">
+                    <a href="https://github.com/ekinciumit" target="_blank" aria-label="GitHub"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/umitekinci/" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="mailto:umitekinci22@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+
+                <div class="hero-actions">
+                    <button class="primary-btn" onclick="document.getElementById('projects').scrollIntoView()">View
+                        Work</button>
+                    <a href="#" class="secondary-btn" download>Download CV</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="robot-container">
+                    <div class="robot-head">
+                        <div class="shield"></div>
+                        <div class="face-structure"></div>
+                        <div class="face-plate">
+                            <div class="eyes-container">
+                                <div class="eye left">
+                                    <div class="eye-shutter"></div>
+                                    <div class="pupil-container">
+                                        <div class="pupil"></div>
+                                    </div>
+                                    <div class="eye-reflection"></div>
+                                    <div class="laser"></div>
+                                </div>
+                                <div class="eye right">
+                                    <div class="eye-shutter"></div>
+                                    <div class="pupil-container">
+                                        <div class="pupil"></div>
+                                    </div>
+                                    <div class="eye-reflection"></div>
+                                    <div class="laser"></div>
+                                </div>
+                            </div>
+                            <div class="mouth-container">
+                                <div class="mouth"></div>
+                            </div>
+                        </div>
+                        <div class="ear left"></div>
+                        <div class="ear right"></div>
+                        <div class="antenna">
+                            <div class="antenna-stick"></div>
+                            <div class="antenna-bulb"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Technical <span class="highlight">Arsenal</span></h2>
+            <div class="cards-grid">
+                <div class="card glass-card">
+                    <div class="icon"><i class="fas fa-server"></i></div>
+                    <h3>Backend</h3>
+                    <div class="skill-tags-container">
+                        <span class="skill-tag">ASP.NET Core</span>
+                        <span class="skill-tag">EF Core</span>
+                        <span class="skill-tag">REST API</span>
+                        <span class="skill-tag">Swagger</span>
+                        <span class="skill-tag">JWT</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="card glass-card">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <h3>Frontend</h3>
+                    <div class="skill-tags-container">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">UI/UX</span>
+                    </div>
+                </div>
+                <div class="card glass-card">
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Mobile</h3>
+                    <div class="skill-tags-container">
+                        <span class="skill-tag">Kotlin</span>
+                        <span class="skill-tag">Jetpack Compose</span>
+                        <span class="skill-tag">Retrofit</span>
+                        <span class="skill-tag">Room</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Koin</span>
+                    </div>
+                </div>
+                <div class="card glass-card">
+                    <div class="icon"><i class="fas fa-project-diagram"></i></div>
+                    <h3>Architecture</h3>
+                    <div class="skill-tags-container">
+                        <span class="skill-tag">Clean Architecture</span>
+                        <span class="skill-tag">SOLID</span>
+                        <span class="skill-tag">OOP</span>
+                        <span class="skill-tag">Git & GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+            <div class="cards-grid">
+                <div class="card glass-card project-card">
+                    <div class="project-tag">Full Stack</div>
+                    <h3>Flightinfo Reservation System</h3>
+                    <p>ASP.NET Core & React based reservation system with JWT + 2FA auth, Clean Architecture, and
+                        Docker.</p>
+                </div>
+                <div class="card glass-card project-card">
+                    <div class="project-tag">Mobile</div>
+                    <h3>Thunder App</h3>
+                    <p>Event & Social interaction app using Flutter & Firebase. Real-time chat, location filtering, and
+                        glassmorphism UI.</p>
+                </div>
+                <div class="card glass-card project-card">
+                    <div class="project-tag">AI Mobile</div>
+                    <h3>Image Generator</h3>
+                    <p>Natural language-based image generation app using Kotlin Jetpack Compose and Wiro AI API.</p>
+                </div>
+                <div class="card glass-card project-card">
+                    <div class="project-tag">UI/UX</div>
+                    <h3>Shopping App UI</h3>
+                    <p>Modern e-commerce interface design focused on UX using Kotlin Jetpack Compose.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Journey & <span class="highlight">Education</span></h2>
+            <div class="timeline">
+                <div class="timeline-item glass-card">
+                    <span class="date">09/2025 – 11/2025</span>
+                    <h3>Süleyman Demirel University</h3>
+                    <h4>Computer Engineering (GPA: 3.11)</h4>
+                    <p>Graduated with a strong foundation in software engineering principles.</p>
+                </div>
+                <div class="timeline-item glass-card">
+                    <span class="date">09/2025 – 11/2025</span>
+                    <h3>Antalya Airport (Fraport TAV)</h3>
+                    <h4>Software Division Intern</h4>
+                    <p>Worked on enterprise ASP.NET Core systems, MSSQL, and learned secure data management in aviation
+                        IT.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="glass-card contact-card">
+                <div class="contact-scanner"></div>
+                <div class="signal-indicator">
+                    <span class="signal-text">SIGNAL: LINKED</span>
+                    <div class="signal-bars">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                <h2 class="matrix-title">Ready to <span class="highlight">Collaborate?</span></h2>
+                <p>I'm currently open to new opportunities. Let's build something amazing together.</p>
+                <div class="contact-methods">
+                    <a href="mailto:umitekinci22@gmail.com" class="primary-btn"><i class="fas fa-paper-plane"></i> Send
+                        Email</a>
+                    <a href="https://www.linkedin.com/in/umitekinci/" target="_blank" class="secondary-btn"><i
+                            class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://www.instagram.com/_umitee/" target="_blank" class="secondary-btn"><i
+                            class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://wa.me/905455308930" target="_blank" class="secondary-btn"><i
+                            class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ümit Ekinci. <span class="faded">Junior Software Developer</span></p>
+        <p class="faded-sm">Antalya, Muratpaşa | +90 545 530 8930</p>
+    </footer>
+
+    <button id="back-to-top" aria-label="Rocket to Top">
+        <i class="fas fa-rocket"></i>
+    </button>
+
+    <div class="custom-cursor"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>

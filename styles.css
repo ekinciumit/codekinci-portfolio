@@ -1,0 +1,1687 @@
+:root {
+    --bg-color: #050505;
+    --text-color: #ffffff;
+    --primary-color: #00f3ff;
+    --secondary-color: #b026ff;
+    --accent-color: #ffe600;
+
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-blur: 10px;
+
+    --font-main: 'Space Grotesk', sans-serif;
+
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    /* Offset for fixed header */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Custom Cyber Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Skill Tags Styles */
+.skill-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.skill-tag {
+    background: rgba(0, 243, 255, 0.05);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    /* geometric feel */
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    background: rgba(0, 243, 255, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    transform: translateY(-2px);
+    color: #fff;
+    animation: tag-glitch 0.3s ease;
+}
+
+@keyframes tag-glitch {
+    0% {
+        transform: translateY(-2px) skew(0);
+    }
+
+    20% {
+        transform: translateY(-2px) skew(2deg);
+        filter: hue-rotate(90deg);
+    }
+
+    40% {
+        transform: translateY(-2px) skew(-2deg);
+    }
+
+    100% {
+        transform: translateY(-2px) skew(0);
+    }
+}
+
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    /* Behind content but in front of background color */
+    pointer-events: none;
+}
+
+/* Custom Cursor Glow */
+#cursor-blur {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 243, 255, 0.2), rgba(176, 38, 255, 0.1), transparent 70%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    /* Moved to front */
+    pointer-events: none;
+    /* Let clicks pass through */
+    filter: blur(80px);
+    /* Increased blur for smoother light */
+    mix-blend-mode: screen;
+    /* Lightens content underneath */
+    transition: width 0.3s, height 0.3s;
+}
+
+/* Glassmorphism Header */
+/* Glassmorphism Header - Floating HUD Style */
+.glass-header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    /* Shrink to fit content */
+    min-width: 60%;
+    /* But keep it substantial */
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 10, 15, 0.7);
+    /* Slightly darker for contrast */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    /* Capsule shape */
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 0 20px rgba(0, 243, 255, 0.05);
+    /* Cyber glow inside */
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .glass-header {
+        width: 90%;
+        min-width: 90%;
+        padding: 0.8rem 1.5rem;
+        top: 10px;
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+    }
+}
+
+/* Add a connector line to the top for a 'hanging' look (optional) or just float */
+/* Let's keep it pure floating for now */
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.dot {
+    color: var(--primary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--text-color);
+    color: var(--text-color);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    /* font-family: 'Space Mono', monospace;  Optional: switch font on hover? */
+}
+
+.cta-btn {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.cta-btn:hover {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+/* Hero Section */
+#hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Changed to space-between to side orb */
+    padding: 0 10%;
+    position: relative;
+    padding-top: 80px;
+    /* Offset for header */
+}
+
+.hero-content {
+    max-width: 600px;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 5rem;
+    line-height: 1;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    max-width: 450px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.primary-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
+}
+
+.role {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    /* Ensure cursor stays on same line */
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.secondary-btn:hover {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Hero Visual (The glowing orb) */
+.hero-visual {
+    perspective: 1000px;
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+.robot-container {
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: robotFloat 6s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+/* Hero Responsiveness is now handled at the bottom of the file */
+
+
+
+.robot-head {
+    position: relative;
+    width: 240px;
+    height: 200px;
+    transform-style: preserve-3d;
+    /* Key for 3D children */
+    transition: transform 0.1s ease-out;
+    /* Smooth follow */
+}
+
+/* Back Structure (Darker background) */
+.face-structure {
+    position: absolute;
+    inset: 0;
+    background: #0a0a10;
+    border-radius: 40px;
+    transform: translateZ(-20px);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+/* Front Face Plate (Glassy) */
+.face-plate {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 15, 30, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 243, 255, 0.4);
+    border-radius: 40px;
+    transform: translateZ(20px);
+    /* Push forward */
+    box-shadow:
+        0 0 20px rgba(0, 243, 255, 0.1),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Keep internal details bound */
+}
+
+/* Eyes */
+.eyes-container {
+    display: flex;
+    gap: 40px;
+    transform: translateZ(10px);
+    /* Eyes slightly pop out */
+    margin-top: -10px;
+}
+
+.eye {
+    width: 60px;
+    height: 60px;
+    background: #000;
+    border-radius: 50%;
+    position: relative;
+    box-shadow:
+        inset 0 0 10px #000,
+        0 0 15px rgba(0, 243, 255, 0.5);
+    border: 2px solid rgba(60, 60, 80, 0.8);
+    overflow: hidden;
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.pupil-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Base position, JS overrides this for tracking */
+    width: 25px;
+    height: 25px;
+    /* No transition on transform here for instant tracking */
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pupil {
+    width: 22px;
+    height: 22px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 8px var(--primary-color));
+    /* Remove restrictive polygon clip in normal state to fix 'box' shadow artifact */
+    clip-path: inset(-20px);
+    transition: background-color 1.5s ease, filter 1.5s ease, width 1.5s ease, height 1.5s ease, border-radius 1.5s ease, clip-path 1.5s ease, transform 1.5s ease;
+}
+
+.eye-reflection {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    z-index: 3;
+    opacity: 0.6;
+}
+
+
+
+/* Mouth */
+.mouth-container {
+    margin-top: 30px;
+    width: 60px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateZ(5px);
+}
+
+.mouth {
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+    animation: voice 3s infinite;
+    /* Simulate idle talking/noise */
+    transition: all 0.3s ease;
+    /* Smooth transition for smile */
+}
+
+/* Smile State */
+.mouth.smile {
+    width: 40px;
+    height: 15px;
+    background: transparent;
+    border-bottom: 3px solid var(--primary-color);
+    border-radius: 0 0 20px 20px;
+    /* Semi-circle curve */
+    box-shadow: 0 5px 10px rgba(0, 243, 255, 0.5);
+    /* Glow downwards */
+    animation: none;
+    /* Stop voice animation when smiling */
+}
+
+/* Proud State (Triggered by JS) */
+/* Proud State (Triggered by JS) */
+.robot-head.proud {
+    transform: translateZ(50px) rotateY(-30deg) rotateX(5deg) !important;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+    transition: transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 1.5s ease;
+    /* Very slow 1.5s transition */
+}
+
+.robot-head.proud .mouth {
+    width: 35px;
+    height: 15px;
+    background: transparent;
+    border-bottom: 3px solid var(--accent-color);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 5px 15px rgba(255, 230, 0, 0.3);
+    animation: none;
+    transition: all 1.2s ease;
+}
+
+.robot-head.proud .pupil {
+    background: var(--accent-color);
+    filter: drop-shadow(0 0 15px var(--accent-color));
+    transform: scale(1.4) rotate(180deg);
+    /* Relative to container center */
+    width: 25px;
+    height: 25px;
+    border-radius: 0;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    transition: all 1.5s ease;
+}
+
+.robot-head.proud .eye {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(255, 230, 0, 0.2);
+    overflow: hidden;
+    transition: all 1.2s ease;
+}
+
+/* Happy Eyes (Shutter effect) */
+.robot-head.proud .eye-shutter {
+    height: 20px;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    border-bottom: 2px solid var(--accent-color);
+    border-radius: 0 0 50% 50%;
+    transition: all 0.3s;
+}
+
+/* Angry Brows (Kill Mode) */
+.robot-head.angry .eye-shutter {
+    height: 35px;
+    background: #000;
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    border-bottom: 3px solid #ff0000;
+    transition: all 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.robot-head.angry .eye.left .eye-shutter {
+    transform: rotate(15deg);
+    border-radius: 0 0 0 100%;
+}
+
+.robot-head.angry .eye.right .eye-shutter {
+    transform: rotate(-15deg);
+    border-radius: 0 0 100% 0;
+}
+
+.robot-head.angry .face-plate {
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+    animation: facial-flicker 0.1s infinite;
+}
+
+@keyframes facial-flicker {
+    0% {
+        background: rgba(15, 15, 30, 0.7);
+    }
+
+    50% {
+        background: rgba(40, 0, 0, 0.8);
+    }
+
+    100% {
+        background: rgba(15, 15, 30, 0.7);
+    }
+}
+
+/* Laser Beams */
+.laser {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Start exactly from pupil center */
+    height: 3px;
+    background: #ff0000;
+    width: 0;
+    opacity: 0;
+    z-index: 100;
+    /* Ensure it's on top of everything */
+    pointer-events: none;
+    box-shadow: 0 0 10px #ff0000, 0 0 5px #fff;
+    transform-origin: left center;
+    border-radius: 2px;
+}
+
+.robot-head.angry .eye,
+.robot-head.angry .face-plate,
+.robot-head.angry .eyes-container {
+    overflow: visible !important;
+}
+
+.robot-head.angry .laser {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+
+/* Ears (Side Panels) */
+.ear {
+    position: absolute;
+    top: 50%;
+    width: 25px;
+    height: 80px;
+    background: #1a1a25;
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    transform: translateY(-50%) translateZ(-10px);
+    /* Slightly behind face plate */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.ear.left {
+    left: -20px;
+    border-radius: 15px 0 0 15px;
+    transform-origin: right center;
+    transform: translateY(-50%) translateZ(-10px) rotateY(-20deg);
+}
+
+.ear.right {
+    right: -20px;
+    border-radius: 0 15px 15px 0;
+    transform-origin: left center;
+    transform: translateY(-50%) translateZ(-10px) rotateY(20deg);
+}
+
+/* Antenna */
+.antenna {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%) translateZ(-5px);
+    width: 10px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.antenna-stick {
+    width: 4px;
+    height: 40px;
+    background: linear-gradient(to top, #1a1a25, #3a3a45);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.antenna-bulb {
+    width: 14px;
+    height: 14px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--secondary-color);
+    animation: pulse 2s infinite;
+}
+
+@keyframes robotFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes voice {
+
+    0%,
+    100% {
+        width: 40px;
+        opacity: 0.5;
+    }
+
+    50% {
+        width: 50px;
+        opacity: 1;
+    }
+}
+
+/* Features & Sections */
+#features,
+#skills,
+#projects,
+#experience {
+    padding: 5rem 10%;
+    max-width: 1400px;
+    /* Standard wide constraint */
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.highlight {
+    color: var(--secondary-color);
+}
+
+/* Typography Additions */
+.subtitle {
+    color: var(--primary-color);
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.role {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+/* Contact Links */
+.contact-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contact-links a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.8rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.contact-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* Slightly wider min-width */
+    gap: 2rem;
+    /* Clean 32px gap */
+    perspective: 1000px;
+    padding: 1rem 0;
+    /* Vertical padding only to avoid cut-off */
+}
+
+/* Featured Projects Tags */
+.project-tag {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.project-card {
+    position: relative;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Timeline specific styles (reusing glass-card) */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary-color), transparent);
+}
+
+.timeline h4 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.date {
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.faded-sm {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Contact Section */
+#contact {
+    padding: 5rem 10%;
+    margin-bottom: 2rem;
+}
+
+.contact-card {
+    position: relative;
+    text-align: center;
+    padding: 5rem 4rem;
+    max-width: 800px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(10, 10, 20, 0.4), rgba(5, 5, 10, 0.6));
+    overflow: hidden;
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s, filter 0.3s;
+}
+
+.contact-card:hover {
+    transform: none;
+    /* Stabilize card movement */
+}
+
+.contact-scanner {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(to bottom, transparent, var(--primary-color), transparent);
+    opacity: 0.15;
+    /* Even more subtle */
+    pointer-events: none;
+    animation: contact-scan 12s linear infinite;
+    /* Slower scan */
+    z-index: 2;
+}
+
+@keyframes contact-scan {
+    0% {
+        top: -10%;
+    }
+
+    100% {
+        top: 110%;
+    }
+}
+
+.signal-indicator {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.signal-text {
+    font-size: 0.6rem;
+    font-family: monospace;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.signal-bars {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+}
+
+.signal-bars span {
+    width: 3px;
+    background: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+}
+
+.signal-bars span:nth-child(1) {
+    height: 5px;
+    animation: bar-pulse 3s infinite 0.1s;
+}
+
+.signal-bars span:nth-child(2) {
+    height: 10px;
+    animation: bar-pulse 3s infinite 0.3s;
+}
+
+.signal-bars span:nth-child(3) {
+    height: 15px;
+    animation: bar-pulse 3s infinite 0.5s;
+}
+
+.signal-bars span:nth-child(4) {
+    height: 20px;
+    animation: bar-pulse 3s infinite 0.2s;
+}
+
+@keyframes bar-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+.contact-card h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 3;
+}
+
+.contact-card p {
+    margin: 0 auto 2.5rem;
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    /* Ensure it stays above scanner if z-index is used */
+    z-index: 5;
+}
+
+.contact-methods a {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+    /* Removed for clip-path compatibility */
+    padding: 2.5rem;
+    position: relative;
+    /* For pseudo-elements */
+    /* border-radius: 20px; */
+    /* Removed for angular look */
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s, filter 0.3s;
+
+    /* Cyber Frame Cut */
+    clip-path: polygon(20px 0, 100% 0,
+            100% calc(100% - 20px), calc(100% - 20px) 100%,
+            0 100%, 0 20px);
+
+    /* Internal Border Trick via Inset Shadow */
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+
+    /* Drop Shadow for Shape (replaces box-shadow which gets clipped) */
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    background: rgba(10, 10, 20, 0.6);
+    /* Much darker base for better text contrast */
+    box-shadow: inset 0 0 0 1px var(--primary-color), 0 0 20px rgba(0, 243, 255, 0.1);
+    filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.25));
+    /* Tightened glow */
+}
+
+/* Ensure text inside cards is crisp */
+.glass-card h3,
+.glass-card h4,
+.glass-card p {
+    position: relative;
+    z-index: 10;
+    /* Keep above subtle internal glows */
+}
+
+.glass-card:hover h3,
+.glass-card:hover h4 {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Cyber Frame Tech Decorations */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid var(--primary-color);
+    border-left: 2px solid var(--primary-color);
+    transition: all 0.3s;
+    opacity: 0.5;
+}
+
+.glass-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    border-right: 2px solid var(--primary-color);
+    transition: all 0.3s;
+    opacity: 0.5;
+}
+
+.glass-card:hover::before,
+.glass-card:hover::after {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    border-color: var(--primary-color);
+}
+
+.glass-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.glass-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Footer */
+footer {
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 5rem;
+}
+
+.faded {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Mobile Responsiveness & Cyber-Dock */
+@media (max-width: 768px) {
+
+    /* 1. Reset Cursors & Hide Desktop Blur */
+    body,
+    a,
+    button {
+        cursor: auto !important;
+    }
+
+    .custom-cursor,
+    #cursor-blur {
+        display: none !important;
+    }
+
+    /* 2. Cyber-Dock (Floating Bottom Navigation) */
+    .glass-header {
+        position: fixed;
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 400px;
+        height: 60px;
+        padding: 0;
+        background: rgba(10, 10, 20, 0.8);
+        backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(0, 243, 255, 0.2);
+        border-radius: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8),
+            0 0 15px rgba(0, 243, 255, 0.1);
+        z-index: 10000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: dock-entrance 0.8s cubic-bezier(0.17, 0.67, 0.13, 1);
+    }
+
+    @keyframes dock-entrance {
+        from {
+            transform: translate(-50%, 100px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+    }
+
+    .logo {
+        display: none;
+    }
+
+    /* Hide logo for cleaner dock */
+
+    nav {
+        width: 100%;
+        display: block !important;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        padding: 0 10px;
+        gap: 0;
+    }
+
+    nav ul li a {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 10px;
+        color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    nav ul li a.active {
+        color: var(--primary-color);
+        text-shadow: 0 0 10px var(--primary-color);
+    }
+
+    nav ul li a::after {
+        display: none;
+    }
+
+    /* Hide the underline effect */
+
+    /* 3. Hero Adjustments */
+    #hero {
+        flex-direction: column-reverse;
+        min-height: 100vh;
+        padding: 80px 5% 100px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        display: none;
+    }
+
+    .hero-visual {
+        width: 260px;
+        height: 260px;
+        margin: 0 auto;
+    }
+
+    .robot-container {
+        width: 220px;
+        height: 220px;
+    }
+
+    .robot-head {
+        width: 140px;
+        height: 120px;
+        transform: none !important;
+    }
+
+    /* 4. Sections & Spacing */
+    section {
+        padding: 4rem 5% 5rem !important;
+    }
+
+    .glass-card {
+        padding: 1.8rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Typewriter Effect */
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: var(--primary-color);
+    animation: blink 1s infinite;
+    margin-left: 5px;
+    vertical-align: middle;
+    transform: translateY(-6px);
+    /* Move slightly up */
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Custom Cursor */
+body {
+    cursor: none;
+    /* Hide default cursor */
+}
+
+a,
+button,
+.cta-btn,
+.primary-btn,
+.secondary-btn {
+    cursor: none;
+    /* Ensure links don't show hand cursor */
+}
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 10px var(--primary-color);
+    mix-blend-mode: difference;
+    /* Cool blend effect over varying backgrounds */
+}
+
+.custom-cursor.active {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 243, 255, 0.1);
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+/* Scroll Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delays for cards */
+.glass-card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.glass-card:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.glass-card:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.glass-card:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+/* Active Menu State is handled by existing .active class */
+
+/* Glitch Effect */
+.glitch {
+    position: relative;
+    color: white;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch::before {
+    color: #0ff;
+    z-index: 2;
+    /* Bring to front */
+    animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+    mix-blend-mode: hard-light;
+}
+
+.glitch::after {
+    color: #f0f;
+    z-index: 2;
+    /* Bring to front */
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+    mix-blend-mode: hard-light;
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip-path: inset(20% 0 80% 0);
+        transform: translate(-2px, 1px);
+    }
+
+    20% {
+        clip-path: inset(60% 0 10% 0);
+        transform: translate(2px, -1px);
+    }
+
+    40% {
+        clip-path: inset(40% 0 50% 0);
+        transform: translate(-2px, 2px);
+    }
+
+    60% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(2px, -2px);
+    }
+
+    80% {
+        clip-path: inset(10% 0 70% 0);
+        transform: translate(-1px, 1px);
+    }
+
+    100% {
+        clip-path: inset(30% 0 20% 0);
+        transform: translate(1px, -1px);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translate(2px, -1px);
+    }
+
+    20% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        clip-path: inset(30% 0 20% 0);
+        transform: translate(2px, -2px);
+    }
+
+    60% {
+        clip-path: inset(10% 0 80% 0);
+        transform: translate(-1px, 1px);
+    }
+
+    80% {
+        clip-path: inset(50% 0 30% 0);
+        transform: translate(1px, -1px);
+    }
+
+    100% {
+        clip-path: inset(20% 0 70% 0);
+        transform: translate(-2px, 1px);
+    }
+}
+
+/* System Breach Mode (Red/Orange Theme) */
+body.system-breach {
+    --primary-color: #ff003c;
+    /* Cyberpunk Red */
+    --secondary-color: #ffae00;
+    /* Amber */
+    --accent-color: #00f3ff;
+    /* Blue becomes accent */
+}
+
+/* Glitch Overlay */
+#glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10000;
+    display: none;
+    mix-blend-mode: color-dodge;
+    background:
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 2px 100%;
+}
+
+#glitch-overlay.active {
+    display: block;
+    animation: glitch-anim 0.2s infinite;
+}
+
+@keyframes glitch-anim {
+    0% {
+        transform: translate(0)
+    }
+
+    20% {
+        transform: translate(-2px, 2px)
+    }
+
+    40% {
+        transform: translate(-2px, -2px)
+    }
+
+    60% {
+        transform: translate(2px, 2px)
+    }
+
+    80% {
+        transform: translate(2px, -2px)
+    }
+
+    100% {
+        transform: translate(0)
+    }
+}
+
+/* Make Robot Clickable */
+.robot-head {
+    cursor: pointer;
+}
+
+.robot-head:hover .face-plate {
+    box-shadow: 0 0 30px var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Energy Shield */
+.shield {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 243, 255, 0.5);
+    background: radial-gradient(circle, rgba(0, 243, 255, 0.1), transparent 70%);
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0, 243, 255, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.shield.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+    animation: shield-pulse 0.2s infinite alternate;
+}
+
+@keyframes shield-pulse {
+    from {
+        box-shadow: 0 0 30px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0, 243, 255, 0.3);
+        border-color: rgba(0, 243, 255, 0.5);
+    }
+
+    to {
+        box-shadow: 0 0 60px rgba(0, 243, 255, 0.6), inset 0 0 40px rgba(0, 243, 255, 0.6);
+        border-color: #fff;
+    }
+}
+
+/* Angry Robot Stats */
+.robot-head.angry .eye {
+    border-color: #ff3c00;
+    /* Angry Orange/Red Border */
+    box-shadow: 0 0 15px rgba(255, 60, 0, 0.5);
+}
+
+.robot-head.angry .eye-shutter {
+    height: 50%;
+    /* Cover half eye */
+    background: #000;
+    border-bottom: 2px solid #ff3c00;
+}
+
+.robot-head.angry .eye.left .eye-shutter {
+    transform: rotate(25deg) scale(1.2);
+    /* Slant inwards */
+}
+
+.robot-head.angry .eye.right .eye-shutter {
+    transform: rotate(-25deg) scale(1.2);
+    /* Slant inwards */
+}
+
+.robot-head.angry .pupil {
+    background: #ff3c00;
+    width: 15px;
+    height: 15px;
+    box-shadow: 0 0 10px #ff3c00;
+}
+
+.robot-head.angry .mouth {
+    background: #ff3c00;
+    width: 30px;
+    height: 3px;
+    border-radius: 0;
+    animation: none;
+    transform: translateY(5px);
+    box-shadow: 0 0 10px #ff3c00;
+}
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 20000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--primary-color);
+    font-family: 'Space Mono', monospace;
+    transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+#preloader.loaded {
+    transform: translateY(-100%);
+}
+
+.terminal-loader {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.terminal-loader .text::after {
+    content: '_';
+    animation: blink 1s infinite;
+}
+
+/* Holo Footer */
+footer {
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 243, 255, 0.2);
+    background: linear-gradient(to bottom, rgba(0, 243, 255, 0.05), transparent);
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 243, 255, 0.05) 3px,
+            rgba(0, 243, 255, 0.05) 4px);
+    pointer-events: none;
+    animation: holo-flicker 4s infinite;
+}
+
+@keyframes holo-flicker {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    52% {
+        opacity: 0.7;
+    }
+
+    54% {
+        opacity: 1;
+    }
+}
+
+/* Back to Top Jetpack */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(10, 10, 20, 0.8);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#back-to-top:hover {
+    background: var(--primary-color);
+    color: #000;
+    box-shadow: 0 0 20px var(--primary-color);
+    transform: translateY(-5px);
+    /* Lift off */
+}
+
+/* Jetpack Fire Effect */
+#back-to-top:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 20px;
+    background: linear-gradient(to bottom, #ffae00, transparent);
+    border-radius: 50%;
+    filter: blur(2px);
+    animation: jet-fire 0.2s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes jet-fire {
+    from {
+        height: 15px;
+        opacity: 0.8;
+    }
+
+    to {
+        height: 25px;
+        opacity: 1;
+    }
+}
